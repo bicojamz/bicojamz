@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BicoJá — pequenos trabalhos, gente da tua zona</title>
+<meta name="description" content="Publica ou aceita pequenos serviços perto de ti: eletricista, canalizador, pedreiro, limpeza, pintor e jardinagem.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+		:root{
+				--papel:	#f3efe6;
+				--papel-alt:	#eae4d5;
+				--tinta:	#211f1c;
+				--tinta-suave:	#5b564c;
+				--linha:	#cfc6b0;
+				--laranja:	#e0611f;
+				--laranja-escuro:	#b84c16;
+				--azul:	#294d63;
+				--verde:	#3c6b45;
+				--branco:	#fffdf8;
+		}
+		*{	box-sizing:	border-box;	margin:	0;	padding:	0;	}
+		body{
+				background:	var(--papel);
+				color:	var(--tinta);
+				font-family:	'Work	Sans',	sans-serif;
+				line-height:	1.5;
+		}
+		h1,	h2,	h3,	.marca{
+				font-family:	'Oswald',	sans-serif;
+				letter-spacing:	0.2px;
+		}
+		/*	----------	Cabeçalho	----------	*/
+		header{
+				background:	var(--tinta);
+				color:	var(--branco);
+				padding:	20px	6%;
+				display:	flex;
+				justify-content:	space-between;
+				align-items:	center;
+				border-bottom:	4px	solid	var(--laranja);
+		}
+		.marca{
+				font-size:	26px;
+				font-weight:	700;
+				text-transform:	uppercase;
+				display:	flex;
+				align-items:	baseline;
+				gap:	8px;
+		}
+		.marca	.ponto{	color:	var(--laranja);	font-size:	30px;	line-height:	0;	}
+		header	.slogan{
+				font-size:	13px;
+				color:	#cfc9bb;
+				font-family:	'Work	Sans',	sans-serif;
+		}
+		/*	----------	Layout	geral	----------	*/
+		main{
+				width:	90%;
+				max-width:	1100px;
+				margin:	0	auto;
+				padding:	36px	0	60px;
+		}
+		section{	margin-bottom:	46px;	}
+		section	>	h2{
+				font-size:	20px;
+				font-weight:	600;
+				text-transform:	uppercase;
+				color:	var(--tinta);
+				border-bottom:	2px	solid	var(--linha);
+				padding-bottom:	10px;
+				margin-bottom:	20px;
+				letter-spacing:	0.5px;
+		}
+		/*	----------	Hero	----------	*/
+		.hero{
+				background:	var(--azul);
+				color:	var(--branco);
+				padding:	44px	6%;
+				margin:	0	-6%;
+				position:	relative;
+				overflow:	hidden;
+		}
+		.hero::after{
+				content:	"";
+				position:	absolute;
+				right:	-60px;
+				top:	-60px;
+				width:	220px;
+				height:	220px;
+				background:	var(--laranja);
+				opacity:	0.15;
+				transform:	rotate(20deg);
+		}
+		.hero-inner{
+				max-width:	1100px;
+				margin:	0	auto;
+				position:	relative;
+		}
+		.hero	h2{
+				font-size:	clamp(26px,	4vw,	38px);
+				font-weight:	700;
+				max-width:	560px;
+				margin-bottom:	8px;
+				line-height:	1.15;
+		}
+		.hero	p{
+				color:	#cbd8e3;
+				max-width:	480px;
+				margin-bottom:	26px;
+				font-size:	15px;
+		}
+		.pesquisa{
+				display:	flex;
+				gap:	10px;
+				max-width:	640px;
+		}
+		.pesquisa	input{
+				flex:	1;
+				padding:	14px	16px;
+
+		border:	none;
+				font-size:	15px;
+				background:	var(--branco);
+				color:	var(--tinta);
+		}
+		.pesquisa	input:focus{
+				outline:	3px	solid	var(--laranja);
+				outline-offset:	-3px;
+		}
+		button{
+				border:	none;
+				cursor:	pointer;
+				font-family:	'Work	Sans',	sans-serif;
+				font-weight:	600;
+				font-size:	14px;
+		}
+		.btn-principal{
+				background:	var(--laranja);
+				color:	var(--branco);
+				padding:	14px	22px;
+				transition:	background	0.15s	ease;
+		}
+		.btn-principal:hover{	background:	var(--laranja-escuro);	}
+		.btn-azul{
+				background:	var(--azul);
+				color:	var(--branco);
+				padding:	14px	20px;
+				width:	100%;
+		}
+		.btn-azul:hover{	background:	#1f3a4b;	}
+		.btn-verde{
+				background:	var(--verde);
+				color:	var(--branco);
+				padding:	10px	16px;
+				width:	100%;
+				margin-top:	12px;
+		}
+		.btn-verde:hover{	background:	#2e5636;	}
+		/*	----------	Categorias	----------	*/
+		.categorias{
+				display:	flex;
+				gap:	10px;
+				flex-wrap:	wrap;
+		}
+		.categoria{
+				background:	var(--branco);
+				border:	1px	solid	var(--linha);
+				padding:	10px	16px;
+				font-size:	14px;
+				font-weight:	500;
+				cursor:	pointer;
+				transition:	border-color	0.15s	ease,	color	0.15s	ease;
+		}
+		.categoria:hover,
+		.categoria.ativa{
+				border-color:	var(--laranja);
+				color:	var(--laranja-escuro);
+		}
+		/*	----------	Formulário	----------	*/
+		.painel{
+				background:	var(--branco);
+				border:	1px	solid	var(--linha);
+				padding:	28px;
+		}
+		.painel	h2{
+				border:	none;
+				padding:	0;
+				margin-bottom:	20px;
+				font-size:	18px;
+		}
+		.formulario{
+				display:	grid;
+				grid-template-columns:	repeat(auto-fit,	minmax(220px,	1fr));
+				gap:	14px;
+		}
+		input,	select,	textarea{
+				width:	100%;
+				padding:	12px	13px;
+				border:	1px	solid	var(--linha);
+				background:	var(--papel);
+				font-size:	14px;
+				font-family:	'Work	Sans',	sans-serif;
+				color:	var(--tinta);
+		}
+		input:focus,	select:focus,	textarea:focus{
+				outline:	2px	solid	var(--azul);
+				outline-offset:	1px;
+		}
+		textarea{	resize:	vertical;	min-height:	80px;	}
+		.campo-completo{	grid-column:	1	/	-1;	}
+		/*	----------	Cartões	de	serviço	(estilo	"ordem	de	serviço")	----------	*/
+		.servicos{
+				display:	grid;
+				grid-template-columns:	repeat(auto-fit,	minmax(260px,	1fr));
+				gap:	18px;
+		}
+		.card{
+				background:	var(--branco);
+				border:	1px	solid	var(--linha);
+				border-left:	4px	solid	var(--azul);
+				padding:	20px;
+				position:	relative;
+		}
+		.card.aceite{	border-left-color:	var(--verde);	}
+		.card-topo{
+				display:	flex;
+				justify-content:	space-between;
+				align-items:	flex-start;
+				margin-bottom:	10px;
+		}
+		.card	h3{
+				font-size:	16px;
+				text-transform:	uppercase;
+				color:	var(--azul);
+		}
+		.preco{
+				font-family:	'Oswald',	sans-serif;
+				font-size:	18px;
+				font-weight:	600;
+				color:	var(--laranja-escuro);
+				white-space:	nowrap;
+		}
+		.card	p{
+				font-size:	14px;
+         		color:	var(--tinta-suave);
+				margin:	5px	0;
+		}
+		.card	p	strong{	color:	var(--tinta);	}
+		.estado{
+				display:	inline-block;
+				font-size:	12px;
+				font-weight:	600;
+				text-transform:	uppercase;
+				letter-spacing:	0.4px;
+				padding:	4px	9px;
+				margin-top:	8px;
+				background:	#e7e1d0;
+				color:	var(--tinta-suave);
+		}
+		.card.aceite	.estado{
+				background:	#dfeadf;
+				color:	var(--verde);
+		}
+		.vazio{
+				text-align:	center;
+				padding:	40px;
+				color:	var(--tinta-suave);
+				border:	1px	dashed	var(--linha);
+				background:	var(--branco);
+		}
+		footer{
+				text-align:	center;
+				padding:	24px;
+				color:	var(--tinta-suave);
+				font-size:	13px;
+				border-top:	1px	solid	var(--linha);
+		}
+		@media	(max-width:	600px){
+				header{	flex-direction:	column;	gap:	6px;	text-align:	center;	}
+				.pesquisa{	flex-direction:	column;	}
+		}
+
+[hidden]{display:none!important}
+body{overflow-x:hidden}
+#auth{display:flex;gap:10px;align-items:center}
+.peq{padding:8px 14px}
+.wa{display:block;text-align:center;text-decoration:none;margin-top:12px;padding:10px 16px;background:#25803f;color:#fff;font-weight:600;font-size:14px}
+.btn-apagar{background:#8a3b2a}
+.btn-link{background:none;color:var(--azul);text-decoration:underline;padding:6px;width:100%}
+dialog{border:1px solid var(--linha);padding:24px;max-width:380px;width:90%;background:var(--branco);margin:auto}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+@media (max-width:600px){#auth{justify-content:center}}
+</style>
+</head>
+<body>
+<header>
+<div class="marca">Bico<span class="ponto">Já</span></div>
+<span class="slogan">Encontra profissionais perto de ti</span>
+<div id="auth"></div>
+</header>
+<div class="hero"><div class="hero-inner">
+<h2>Que serviço precisas hoje?</h2>
+<p>Publica um trabalho ou aceita um perto de ti — sem intermediários complicados.</p>
+<div class="pesquisa">
+<input type="text" id="campoPesquisa" aria-label="Pesquisar" placeholder="Pesquisar por categoria, cidade, bairro ou província..." oninput="pesquisarServicos()">
+<button class="btn-principal" onclick="pesquisarServicos()">Buscar</button>
+</div></div></div>
+<p style="background:#fff3cd;color:#5a4500;padding:10px 6%;font-size:14px;text-align:center">Versão de demonstração: as contas e os serviços ficam guardados só neste aparelho.</p>
+<main>
+<section><h2>Categorias</h2>
+<div class="categorias">
+<div class="categoria" data-cat="Eletricista" onclick="filtrarCategoria('Eletricista')">⚡ Eletricista</div>
+<div class="categoria" data-cat="Canalizador" onclick="filtrarCategoria('Canalizador')">🚰 Canalizador</div>
+<div class="categoria" data-cat="Pedreiro" onclick="filtrarCategoria('Pedreiro')">🧱 Pedreiro</div>
+<div class="categoria" data-cat="Limpeza" onclick="filtrarCategoria('Limpeza')">🧹 Limpeza</div>
+<div class="categoria" data-cat="Pintor" onclick="filtrarCategoria('Pintor')">🎨 Pintor</div>
+<div class="categoria" data-cat="Jardinagem" onclick="filtrarCategoria('Jardinagem')">🌿 Jardinagem</div>
+<div class="categoria" data-cat="Outros" onclick="filtrarCategoria('Outros')">➕ Outros</div>
+<div class="categoria ativa" data-cat="Todos" onclick="filtrarCategoria('Todos')">📋 Todos</div>
+</div></section>
+<section class="painel"><h2 id="painelTitulo">Publicar novo serviço</h2>
+<div id="avisoLogin"><p style="margin-bottom:14px">Para publicar ou aceitar serviços, cria uma conta ou entra.</p>
+<button class="btn-azul" id="bAbrir">Entrar / Registar</button></div>
+<p id="infoPerfil" hidden style="margin-bottom:8px"></p>
+<form id="formServico" class="formulario" hidden>
+<select id="categoria" aria-label="Categoria" required>
+<option value="">Escolhe a categoria</option>
+<option>Eletricista</option><option>Canalizador</option><option>Pedreiro</option><option>Limpeza</option><option>Pintor</option><option>Jardinagem</option>
+<option value="Outro">Outro (escrever)</option>
+</select>
+<input id="categoriaOutro" class="campo-completo" maxlength="40" aria-label="Outra categoria" placeholder="Escreve a categoria do serviço" hidden>
+<select id="pProv" aria-label="Província" required></select>
+<input id="pCidade" maxlength="60" aria-label="Cidade" placeholder="Cidade" required>
+<input id="pBairro" maxlength="60" aria-label="Bairro" placeholder="Bairro" required>
+<input id="preco" class="campo-completo" type="number" min="1" step="0.01" aria-label="Preço" placeholder="Preço do serviço (MT)" required>
+<textarea id="descricao" class="campo-completo" maxlength="500" aria-label="Descrição" placeholder="Descreve o serviço..." required></textarea>
+<button class="btn-azul campo-completo" type="submit">Publicar serviço</button>
+</form>
+<button class="btn-link" id="bMudar" hidden></button></section>
+<section><h2>Serviços disponíveis</h2><div id="listaServicos" class="servicos"></div></section>
+<section><h2>Profissionais</h2><div id="listaProf" class="servicos"></div></section>
+<section class="painel" id="perigo" hidden style="border-color:#b00020"><h2 style="color:#b00020">Zona de perigo</h2>
+<p style="margin-bottom:14px">Estas ações afetam a tua conta.</p>
+<button class="btn-azul" id="bSair" style="margin-bottom:10px">Sair da conta</button>
+<button class="btn-verde btn-apagar" id="bApagarConta">Apagar a minha conta</button></section>
+</main>
+<footer>© 2026 BicoJá — Pequenos trabalhos, grandes soluções.<br>Preço, pagamento e detalhes do trabalho são combinados diretamente entre cliente e profissional. O BicoJá não intervém nem se responsabiliza pelos acordos.</footer>
+<dialog id="dlg">
+<form id="formAuth" class="formulario" style="grid-template-columns:1fr">
+<h2 id="aTitulo" style="font-size:18px">Entrar</h2>
+<input id="aNome" maxlength="80" placeholder="O teu nome" autocomplete="name" hidden>
+<input id="aTel" type="tel" placeholder="Teu WhatsApp (ex.: 84 123 4567)" autocomplete="tel" hidden>
+<input id="aEmail" maxlength="120" placeholder="E-mail ou WhatsApp" autocomplete="username" required>
+<input id="aSenha" type="password" placeholder="Senha (mín. 6 caracteres)" minlength="6" required>
+<select id="aTipo" hidden>
+<option value="">O que procuras no BicoJá?</option>
+<option value="cliente">Tenho trabalho para dar (cliente)</option>
+<option value="profissional">Procuro trabalho (profissional)</option>
+</select>
+<select id="aArea" hidden>
+<option value="">A tua área de trabalho</option>
+<option>Eletricista</option><option>Canalizador</option><option>Pedreiro</option><option>Limpeza</option><option>Pintor</option><option>Jardinagem</option>
+<option value="Outro">Outro (escrever)</option>
+</select>
+<input id="aAreaOutro" maxlength="40" placeholder="Escreve a tua área de trabalho" hidden>
+<select id="aProv" hidden></select>
+<input id="aCidade" maxlength="60" placeholder="A tua cidade" hidden>
+<input id="aBairro" maxlength="60" placeholder="O teu bairro" hidden>
+<input id="aCodigo" inputmode="numeric" maxlength="6" placeholder="Código de 6 números" autocomplete="one-time-code" hidden>
+<p id="aAviso" hidden style="font-size:14px">Vais apagar a tua conta e os serviços que publicaste. Isto não se pode desfazer. Escreve a tua senha para confirmar.</p>
+<p id="aErro" style="color:#b00020;font-size:13px"></p>
+<button class="btn-azul" type="submit" id="aBtn">Entrar</button>
+<button class="btn-link" type="button" id="aAlt"></button>
+<button class="btn-link" type="button" id="aFechar">Cancelar</button>
+</form></dialog>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let eu = null, cat = 'Todos', modo = 'entrar', temporizador, emailPend = '';
+const PROV = ['Cabo Delgado', 'Gaza', 'Inhambane', 'Manica', 'Maputo (Cidade)', 'Maputo (Província)', 'Nampula', 'Niassa', 'Sofala', 'Tete', 'Zambézia'];
+['pProv', 'aProv'].forEach(id => $(id).innerHTML = '<option value="">Província</option>' + PROV.map(p => '<option>' + p + '</option>').join(''));
+
+// ===== MODO DEMONSTRAÇÃO: sem servidor. Os dados ficam guardados só neste aparelho =====
+const DB_KEY = 'bicoja_demo', SES_KEY = 'bicoja_sessao';
+const lerDB = () => { try { return JSON.parse(localStorage.getItem(DB_KEY)) || {u:[], s:[], n:1}; } catch (e) { return {u:[], s:[], n:1}; } };
+const gravarDB = d => localStorage.setItem(DB_KEY, JSON.stringify(d));
+const semAcento = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const CATS = ['Eletricista', 'Canalizador', 'Pedreiro', 'Limpeza', 'Pintor', 'Jardinagem'];
+const cortar = (s, n) => String(s || '').trim().slice(0, n);
+const telNorm = t => { t = String(t || '').replace(/\D/g, ''); if (t.length === 9) t = '258' + t; return t.length >= 11 && t.length <= 13 ? t : null; };
+async function sha(t) {
+  if (!(window.crypto && crypto.subtle)) return btoa(unescape(encodeURIComponent(t)));
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+}
+function localDe(d) {
+  const pv = cortar(d.provincia, 40), ci = cortar(d.cidade, 60), ba = cortar(d.bairro, 60);
+  return PROV.includes(pv) && ci && ba ? ba + ', ' + ci + ', ' + pv : null;
+}
+function perfilDe(d) {
+  const tipo = cortar(d.tipo, 12);
+  if (tipo !== 'cliente' && tipo !== 'profissional') return {erro:'Escolhe o teu tipo de conta.'};
+  if (tipo === 'cliente') return {tipo, area:null, cidade:null};
+  let area = cortar(d.area, 40);
+  if (!area) return {erro:'Escolhe ou escreve a tua área de trabalho.'};
+  area = CATS.find(c => c.toLowerCase() === area.toLowerCase()) || area;
+  const cidade = localDe(d);
+  if (!cidade) return {erro:'Escolhe a província e escreve a cidade e o bairro.'};
+  return {tipo, area, cidade};
+}
+async function api(a, d) {
+  try { return await apiLocal(a, d || {}); }
+  catch (e) { return {erro:'Este navegador bloqueou o armazenamento. Sai do modo privado e tenta de novo.'}; }
+}
+async function apiLocal(a, d) {
+  const partes = a.split('&'), acao = partes[0], p = new URLSearchParams(partes.slice(1).join('&'));
+  const db = lerDB(), sid = Number(localStorage.getItem(SES_KEY)) || null;
+  const eu = db.u.find(u => u.id === sid) || null;
+  const pub = u => u && {id:u.id, nome:u.nome, tipo:u.tipo, area:u.area, cidade:u.cidade};
+  const entra = u => { localStorage.setItem(SES_KEY, u.id); return {utilizador:pub(u)}; };
+  const semSessao = {erro:'Entra na tua conta primeiro.'};
+  switch (acao) {
+    case 'eu': return {utilizador:pub(eu)};
+    case 'registar': {
+      const nome = cortar(d.nome, 80), tel = telNorm(d.telefone), email = cortar(d.email, 120).toLowerCase(), senha = String(d.senha || '');
+      if (nome.length < 2) return {erro:'Escreve o teu nome.'};
+      if (!tel) return {erro:'Número inválido. Usa o teu WhatsApp, ex.: 84 123 4567.'};
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return {erro:'E-mail inválido.'};
+      if (senha.length < 6) return {erro:'A senha precisa de pelo menos 6 caracteres.'};
+      const pf = perfilDe(d); if (pf.erro) return pf;
+      if (db.u.some(u => u.telefone === tel || u.email === email)) return {erro:'Esse WhatsApp ou e-mail já está registado. Entra na conta.'};
+      const u = Object.assign({id:db.n++, nome, telefone:tel, email, hash:await sha(senha)}, pf);
+      db.u.push(u); gravarDB(db); return entra(u);
+    }
+    case 'entrar': {
+      const l = cortar(d.login, 120).toLowerCase(), t = telNorm(l);
+      const u = db.u.find(x => l.includes('@') ? x.email === l : (t && x.telefone === t));
+      if (!u || u.hash !== await sha(String(d.senha || ''))) return {erro:'E-mail/WhatsApp ou senha incorretos.'};
+      return entra(u);
+    }
+    case 'sair': localStorage.removeItem(SES_KEY); return {ok:1};
+    case 'mudar': {
+      if (!eu) return semSessao;
+      const pf = perfilDe(d); if (pf.erro) return pf;
+      Object.assign(eu, pf); gravarDB(db); return {utilizador:pub(eu)};
+    }
+    case 'listar': {
+      const c = p.get('cat') || 'Todos', q = semAcento(p.get('q') || '');
+      const lista = db.s.filter(s => {
+        const cli = db.u.find(u => u.id === s.cliente_id);
+        const okCat = c === 'Todos' || semAcento(s.categoria) === semAcento(c) || (c === 'Outros' && !CATS.includes(s.categoria));
+        return okCat && semAcento([s.categoria, s.localizacao, s.descricao, cli && cli.nome].join(' ')).includes(q);
+      }).reverse().slice(0, 100);
+      return {servicos: lista.map(s => {
+        const cli = db.u.find(u => u.id === s.cliente_id), pro = db.u.find(u => u.id === s.profissional_id);
+        let contacto = null;
+        if (eu && pro && cli) { if (eu.id === cli.id) contacto = pro.telefone; else if (eu.id === pro.id) contacto = cli.telefone; }
+        return {id:s.id, categoria:s.categoria, localizacao:s.localizacao, preco:s.preco, descricao:s.descricao, cliente_id:s.cliente_id,
+                profissional_id:s.profissional_id || null, cliente:cli ? cli.nome : '?', profissional:pro ? pro.nome : null, contacto};
+      })};
+    }
+    case 'profissionais': {
+      const c = p.get('cat') || 'Todos', q = semAcento(p.get('q') || '');
+      return {profissionais: db.u.filter(u => u.tipo === 'profissional'
+          && (c === 'Todos' || semAcento(u.area) === semAcento(c) || (c === 'Outros' && !CATS.includes(u.area)))
+          && semAcento([u.area, u.cidade, u.nome].join(' ')).includes(q)).reverse().slice(0, 100)
+        .map(u => ({id:u.id, nome:u.nome, area:u.area, cidade:u.cidade, contacto: eu ? u.telefone : null}))};
+    }
+    case 'publicar': {
+      if (!eu) return semSessao;
+      if (eu.tipo !== 'cliente') return {erro:'Só contas de cliente podem publicar serviços.'};
+      let cat = cortar(d.categoria, 40); cat = CATS.find(x => x.toLowerCase() === cat.toLowerCase()) || cat;
+      const loc = localDe(d), desc = cortar(d.descricao, 500), preco = Number(d.preco);
+      if (!cat || !loc || !desc || !(preco > 0)) return {erro:'Preenche todos os campos corretamente.'};
+      db.s.push({id:db.n++, cliente_id:eu.id, categoria:cat, localizacao:loc, preco, descricao:desc, profissional_id:null});
+      gravarDB(db); return {ok:1};
+    }
+    case 'aceitar': {
+      if (!eu) return semSessao;
+      if (eu.tipo !== 'profissional') return {erro:'Só contas de profissional podem aceitar serviços.'};
+      const s = db.s.find(x => x.id === Number(d.id));
+      if (!s || s.profissional_id || s.cliente_id === eu.id) return {erro:'Este serviço já foi aceite ou foi publicado por ti.'};
+      s.profissional_id = eu.id; gravarDB(db); return {ok:1};
+    }
+    case 'apagar': {
+      if (!eu) return semSessao;
+      db.s = db.s.filter(x => !(x.id === Number(d.id) && x.cliente_id === eu.id && !x.profissional_id));
+      gravarDB(db); return {ok:1};
+    }
+    case 'apagar_conta': {
+      if (!eu) return semSessao;
+      if (eu.hash !== await sha(String(d.senha || ''))) return {erro:'Senha incorreta.'};
+      db.s = db.s.filter(x => x.cliente_id !== eu.id);
+      db.s.forEach(x => { if (x.profissional_id === eu.id) x.profissional_id = null; });
+      db.u = db.u.filter(u => u.id !== eu.id); gravarDB(db); localStorage.removeItem(SES_KEY); return {ok:1};
+    }
+    default: return {erro:'Ação desconhecida.'};
+  }
+}
+const vis = (ids, on) => ids.forEach(i => { $(i).hidden = !on; $(i).required = on; });
+
+function pintar() {
+  const c = eu && eu.tipo === 'cliente', p = eu && eu.tipo === 'profissional';
+  $('auth').innerHTML = eu ? '<span class="slogan">Olá, ' + esc(eu.nome) + '</span>'
+                           : '<button class="btn-principal peq" id="bEntrar">Entrar / Registar</button>';
+  $('painelTitulo').textContent = p ? 'O teu perfil de profissional' : 'Publicar novo serviço';
+  $('avisoLogin').hidden = !!eu;
+  $('formServico').hidden = !c;
+  $('infoPerfil').hidden = !p;
+  if (p) $('infoPerfil').textContent = 'Área: ' + eu.area + ' · Local: ' + eu.cidade + '. Os clientes veem-te na lista de profissionais e podem falar contigo no WhatsApp. Aceita serviços na lista abaixo.';
+  $('bMudar').hidden = !eu;
+  $('perigo').hidden = !eu;
+  $('bMudar').textContent = p ? 'Passar a conta de cliente (publicar serviços)' : 'Passar a conta de profissional (procurar trabalho)';
+}
+function pintarModo() {
+  const reg = modo === 'registar', ent = modo === 'entrar', per = modo === 'perfil', apa = modo === 'apagar', cod = modo === 'codigo';
+  const prof = per || (reg && $('aTipo').value === 'profissional');
+  vis(['aNome', 'aTel', 'aTipo'], reg);
+  vis(['aEmail'], reg || ent);
+  vis(['aSenha'], reg || ent || apa);
+  $('aAviso').hidden = !(apa || cod);
+  vis(['aCodigo'], cod);
+  $('aAviso').textContent = cod ? 'Enviámos um código de 6 números para ' + emailPend + '. Vale 15 minutos. Vê também a pasta de spam.'
+    : 'Vais apagar a tua conta e os serviços que publicaste. Isto não se pode desfazer. Escreve a tua senha para confirmar.';
+  vis(['aArea', 'aProv', 'aCidade', 'aBairro'], prof);
+  vis(['aAreaOutro'], prof && $('aArea').value === 'Outro');
+  $('aEmail').type = reg ? 'email' : 'text';
+  $('aEmail').placeholder = reg ? 'O teu e-mail' : 'E-mail ou WhatsApp';
+  $('aSenha').autocomplete = reg ? 'new-password' : 'current-password';
+  $('aTitulo').textContent = {entrar:'Entrar', registar:'Criar conta', perfil:'Passar a profissional', apagar:'Apagar a minha conta', codigo:'Confirma o teu e-mail'}[modo];
+  $('aBtn').textContent = ent ? 'Entrar' : reg ? 'Registar' : apa ? 'Apagar para sempre' : cod ? 'Confirmar' : 'Guardar';
+  $('aAlt').hidden = per || apa;
+  $('aAlt').textContent = cod ? 'Reenviar código' : reg ? 'Já tens conta? Entra' : 'Ainda não tens conta? Regista-te';
+  $('aErro').textContent = '';
+}
+function abrir(m) { modo = m; pintarModo(); $('dlg').showModal(); }
+
+function linkWa(tel, msg) {
+  return '<a class="wa" target="_blank" rel="noopener" href="https://wa.me/' + String(tel).replace(/\D/g, '') + '?text=' + encodeURIComponent(msg) + '">Falar no WhatsApp</a>';
+}
+function cartao(s) {
+  const aceite = !!s.profissional;
+  let acao = '';
+  if (!aceite) {
+    if (eu && eu.id == s.cliente_id) acao = '<button class="btn-verde btn-apagar" data-a="apagar" data-id="' + s.id + '">Apagar publicação</button>';
+    else if (!eu) acao = '<button class="btn-verde" data-a="entrar">Entrar para aceitar</button>';
+    else if (eu.tipo === 'profissional') acao = '<button class="btn-verde" data-a="aceitar" data-id="' + s.id + '">Aceitar serviço</button>';
+  } else {
+    acao = '<p><strong>Profissional:</strong> ' + esc(s.profissional) + '</p>';
+    if (s.contacto) acao += linkWa(s.contacto, 'Olá! Falo pelo BicoJá sobre o serviço de ' + s.categoria + ' em ' + s.localizacao + '.');
+  }
+  return '<div class="card' + (aceite ? ' aceite' : '') + '">'
+    + '<div class="card-topo"><h3>' + esc(s.categoria) + '</h3><span class="preco">' + Number(s.preco).toFixed(2) + ' MT</span></div>'
+    + '<p><strong>Descrição:</strong> ' + esc(s.descricao) + '</p>'
+    + '<p><strong>Cliente:</strong> ' + esc(s.cliente) + '</p>'
+    + '<p><strong>Localização:</strong> ' + esc(s.localizacao) + '</p>'
+    + '<span class="estado">' + (aceite ? 'Aceite' : 'Disponível') + '</span>' + acao + '</div>';
+}
+function cartaoProf(p) {
+  const acao = p.contacto ? linkWa(p.contacto, 'Olá, ' + p.nome + '! Vi o teu perfil de ' + p.area + ' no BicoJá.')
+                          : '<button class="btn-verde" data-a="entrar">Entrar para ver o contacto</button>';
+  return '<div class="card"><div class="card-topo"><h3>' + esc(p.area) + '</h3></div>'
+    + '<p><strong>Nome:</strong> ' + esc(p.nome) + '</p><p><strong>Local:</strong> ' + esc(p.cidade) + '</p>' + acao + '</div>';
+}
+async function carregar() {
+  const qs = '&q=' + encodeURIComponent($('campoPesquisa').value.trim()) + '&cat=' + encodeURIComponent(cat);
+  const [r, rp] = await Promise.all([api('listar' + qs), api('profissionais' + qs)]);
+  const lista = (res, chave, fn, vazio) => res.erro ? '<div class="vazio">' + esc(res.erro) + '</div>'
+    : res[chave].length ? res[chave].map(fn).join('') : '<div class="vazio">' + vazio + '</div>';
+  $('listaServicos').innerHTML = lista(r, 'servicos', cartao, 'Nenhum serviço encontrado.');
+  $('listaProf').innerHTML = lista(rp, 'profissionais', cartaoProf, 'Nenhum profissional encontrado.');
+}
+function pesquisarServicos() { clearTimeout(temporizador); temporizador = setTimeout(carregar, 250); }
+function filtrarCategoria(c) {
+  cat = c;
+  document.querySelectorAll('.categoria').forEach(el => el.classList.toggle('ativa', el.dataset.cat === c));
+  carregar();
+}
+
+$('formServico').addEventListener('submit', async e => {
+  e.preventDefault();
+  const r = await api('publicar', {categoria:$('categoria').value === 'Outro' ? $('categoriaOutro').value : $('categoria').value, provincia:$('pProv').value, cidade:$('pCidade').value, bairro:$('pBairro').value, preco:$('preco').value, descricao:$('descricao').value});
+  if (r.erro) { alert(r.erro); return; }
+  e.target.reset(); trocaCat(); filtrarCategoria('Todos');
+});
+$('formAuth').addEventListener('submit', async e => {
+  e.preventDefault();
+  const d = {nome:$('aNome').value, telefone:$('aTel').value, email:$('aEmail').value, login:$('aEmail').value, senha:$('aSenha').value, codigo:$('aCodigo').value,
+             tipo:$('aTipo').value, area:$('aArea').value === 'Outro' ? $('aAreaOutro').value : $('aArea').value, provincia:$('aProv').value, cidade:$('aCidade').value, bairro:$('aBairro').value};
+  if (modo === 'apagar') {
+    const r = await api('apagar_conta', {senha:d.senha});
+    if (r.erro) { $('aErro').textContent = r.erro; return; }
+    eu = null; $('dlg').close(); e.target.reset(); pintar(); carregar(); alert('A tua conta foi apagada.'); return;
+  }
+  const r = modo === 'perfil' ? await api('mudar', {...d, tipo:'profissional'}) : await api({registar:'registar', entrar:'entrar', codigo:'confirmar'}[modo], d);
+  if (r.erro) { $('aErro').textContent = r.erro; return; }
+  if (r.pendente) { emailPend = r.email; modo = 'codigo'; pintarModo(); return; }
+  eu = r.utilizador; $('dlg').close(); e.target.reset(); pintar(); carregar();
+});
+function trocaCat() { const o = $('categoria').value === 'Outro'; $('categoriaOutro').hidden = !o; $('categoriaOutro').required = o; }
+$('categoria').addEventListener('change', trocaCat);
+$('aArea').addEventListener('change', pintarModo);
+$('aTipo').addEventListener('change', pintarModo);
+$('aAlt').onclick = async () => {
+  if (modo === 'codigo') { const r = await api('reenviar', {}); $('aErro').textContent = r.erro || 'Código reenviado. Vê o teu e-mail.'; return; }
+  modo = modo === 'registar' ? 'entrar' : 'registar'; pintarModo();
+};
+$('aFechar').onclick = () => $('dlg').close();
+document.addEventListener('click', async e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.id === 'bEntrar' || b.id === 'bAbrir' || b.dataset.a === 'entrar') abrir('entrar');
+  else if (b.id === 'bSair') { await api('sair', {}); eu = null; pintar(); carregar(); }
+  else if (b.id === 'bApagarConta') abrir('apagar');
+  else if (b.id === 'bMudar') {
+    if (eu.tipo === 'profissional') { const r = await api('mudar', {tipo:'cliente'}); if (r.erro) alert(r.erro); else { eu = r.utilizador; pintar(); carregar(); } }
+    else abrir('perfil');
+  } else if (b.dataset.a === 'aceitar') {
+    const r = await api('aceitar', {id:+b.dataset.id}); if (r.erro) alert(r.erro); carregar();
+  } else if (b.dataset.a === 'apagar' && confirm('Apagar esta publicação?')) {
+    await api('apagar', {id:+b.dataset.id}); carregar();
+  }
+});
+api('eu').then(r => { eu = r.utilizador || null; pintar(); carregar(); });
+</script>
+</body>
+</html>
